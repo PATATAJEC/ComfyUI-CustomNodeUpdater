@@ -2,6 +2,8 @@
 
 A simple desktop tool (Tkinter) to manage ComfyUI custom nodes: clone, update (git pull), switch to a specific branch, install requirements, and delete selected nodes—all with logs and a scrollable list.
 
+<img width="1099" height="903" alt="image" src="https://github.com/user-attachments/assets/7fc62921-ce19-4447-97fa-e5f7e5b9e28b" />
+
 ## Features
 
 * **Clone node** from a GitHub URL into `ComfyUI/custom_nodes/`.
