@@ -16,6 +16,11 @@ A simple desktop tool (Tkinter) to manage ComfyUI custom nodes: clone, update (g
 
 Additionally, a convenience launcher script **`run_CustomNodeUpdater.bat`** is included to start the app quickly on Windows.
 
+## Installation (Quick setup)
+- Copy **`CustomNodeUpdater.py`** and **`run_CustomNodeUpdater.bat`** into the **root of your ComfyUI folder** — the same directory that contains the `python_embeded/` folder.
+- Ensure `python_embeded/python.exe` exists (or update the path in the script if your layout differs).
+- Make sure Git is installed (or set a full path/alias if needed).
+
 ## Requirements
 
 * **Git** available in your system PATH.
