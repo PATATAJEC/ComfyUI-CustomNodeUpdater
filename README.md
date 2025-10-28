@@ -1,3 +1,7 @@
+## UPDATE — 2025-10-28
+
+- **New:** Clicking a node’s **name** now copies its **GitHub repository URL** to the clipboard (label styled as a link with a hand cursor).
+
 # Custom Node Updater for ComfyUI
 
 A simple desktop tool (Tkinter) to manage ComfyUI custom nodes: clone, update (git pull), switch to a specific branch, install requirements, and delete selected nodes—all with logs and a scrollable list.
@@ -12,6 +16,7 @@ A simple desktop tool (Tkinter) to manage ComfyUI custom nodes: clone, update (g
 * **Delete selected nodes** safely (restricted to `ComfyUI/custom_nodes/`, with confirmation).
 * **Switch to branch**: enter a branch name and update the selected node to that branch (`git fetch --all --prune` + `git switch` or create a tracking branch if needed).
 * **Show current branch** next to each node's name (displayed in its own column after the name).
+* **Copy GitHub URL on click**: click a node’s name to instantly copy its GitHub repo URL to the clipboard.
 * **Scrollable node list** and **persistent console panel** (split view) so logs remain visible when resizing the window.
 
 Additionally, a convenience launcher script **`run_CustomNodeUpdater.bat`** is included to start the app quickly on Windows.
@@ -32,7 +37,7 @@ Additionally, a convenience launcher script **`run_CustomNodeUpdater.bat`** is i
 1. Place this repository next to (or inside) your ComfyUI setup so that `ComfyUI/custom_nodes/` is reachable by the script.
 2. Ensure `python_embeded/python.exe` exists (or update the path in the script).
 3. Make sure Git is installed.
-4. (Windows) Double‑click `run_CustomNodeUpdater.bat` to launch; or run the script via Python.
+4. (Windows) Double-click `run_CustomNodeUpdater.bat` to launch; or run the script via Python.
 
 ## Usage
 
@@ -44,6 +49,7 @@ Additionally, a convenience launcher script **`run_CustomNodeUpdater.bat`** is i
    * *INSTALL REQUIREMENTS TO SELECTED*
    * *DELETE SELECTED NODES* (permanent; only inside `custom_nodes/`)
 4. **Switch to branch** – in a row’s input field, enter a branch name (e.g., `main`, `dev`, `feature-x`) and click *UPDATE TO BRANCH*.
+5. **Copy GitHub URL** – click on the node’s name to copy its repository URL to the clipboard (confirmation appears in the log panel).
 
 **Note:** The current branch for each node is displayed next to its name, so you can quickly see what branch is active.
 
@@ -51,7 +57,7 @@ Additionally, a convenience launcher script **`run_CustomNodeUpdater.bat`** is i
 
 * The app runs `git fetch --all --prune`, then tries `git switch <branch>`.
 * If the local branch does not exist, it creates it tracking `origin/<branch>`.
-* This preserves local changes; it does **not** hard‑reset to `origin/<branch>`.
+* This preserves local changes; it does **not** hard-reset to `origin/<branch>`.
 
 > If you prefer a force update (local branch exactly equals `origin/<branch>`), you can modify the function to use `git checkout -B <branch> origin/<branch>`.
 
@@ -65,6 +71,7 @@ Additionally, a convenience launcher script **`run_CustomNodeUpdater.bat`** is i
 * **Git not found**: ensure Git is installed and accessible in PATH.
 * **requirements.txt not found**: some nodes don’t need dependencies; the installer will skip them.
 * **Branch not found**: verify the branch name exists on the remote.
+* **Clipboard not working**: some desktop environments may restrict clipboard access; check OS permissions.
 
 ## License
 
