@@ -390,8 +390,11 @@ class NodeManagerApp:
             tk.Checkbutton(row, variable=var).pack(side='left', padx=5)
             tk.Label(row, text=entry['id'], width=3).pack(side='left')
 
-            # Nazwa | Branch
-            tk.Label(row, text=entry['name'], width=30, anchor='w').pack(side='left', padx=(5, 0))
+            # Nazwa (klikalna -> kopiuje URL GitHub) | Branch
+            name_label = tk.Label(row, text=entry['name'], width=30, anchor='w', fg="#1a73e8", cursor="hand2")
+            name_label.pack(side='left', padx=(5, 0))
+            name_label.bind("<Button-1>", lambda e, u=entry.get('github_url', ''): self.copy_url_to_clipboard(u))
+
             tk.Label(row, text='|', width=1, anchor='center', fg="#888").pack(side='left', padx=(5, 5))
             tk.Label(row, text=entry.get('current_branch', 'unknown'), width=18, anchor='w').pack(side='left')
 
@@ -478,6 +481,20 @@ class NodeManagerApp:
             self.log("Refreshing node list...")
             self.database = scan_nodes()
             self.draw_nodes()
+
+    def copy_url_to_clipboard(self, url: str):
+        """Kopiuje adres GitHub do schowka i loguje zdarzenie."""
+        if not url:
+            self.log("[COPY] No GitHub URL available for this node.")
+            return
+        try:
+            self.root.clipboard_clear()
+            self.root.clipboard_append(url)
+            # Opcjonalny update, by schowek był natychmiast dostępny
+            self.root.update_idletasks()
+            self.log(f"[COPIED] GitHub URL copied to clipboard: {url}")
+        except Exception as e:
+            self.log(f"[COPY ERROR] Failed to copy URL: {e}")
 
     def log(self, message):
         self.log_text.insert('end', f"{message}\n")
